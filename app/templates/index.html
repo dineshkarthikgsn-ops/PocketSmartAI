@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>PocketSmartAI</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: gray;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 8px;
+            background: #222;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #444;
+        }
+
+      #result {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    border: 1px solid #e5e5e5;
+}
+
+.recommendation-card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 14px;
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.recommendation-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.price {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.reason {
+    color: #555;
+    line-height: 1.5;
+}
+
+.recommendation-card h3 {
+    margin-top: 0;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.reason {
+    color: #555;
+}
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #777;
+}
+
+footer p {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+footer small {
+    font-size: 13px;
+}
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🤖 PocketSmartAI</h1>
+
+        <p class="subtitle">
+            AI-powered recommendations for Home, Parties & Jewellery
+        </p>
+
+        <label>Category</label>
+
+        <select id="category">
+            <option>Home Decoration</option>
+            <option>Party Planning</option>
+            <option>Jewellery</option>
+        </select>
+
+
+        <label>Budget</label>
+
+        <input
+            type="number"
+            id="budget"
+            placeholder="Enter your budget in ₹"
+        >
+
+
+        <label>Preference</label>
+
+        <input
+            type="text"
+            id="preference"
+            placeholder="Example: Modern, Minimalist, Traditional"
+        >
+
+
+        <button onclick="getRecommendations()">
+            ✨ Get Recommendations
+        </button>
+
+
+        <div id="result">
+            Your recommendations will appear here.
+        </div>
+        <footer>
+    <p>🤖 PocketSmartAI</p>
+    <small>AI-powered budget recommendations</small>
+</footer>
+
+    </div>
+<script>
+
+    const category = document.getElementById("category");
+    const preference = document.getElementById("preference");
+
+    category.addEventListener("change", function() {
+
+        if (category.value === "Home Decoration") {
+            preference.placeholder =
+                "Example: Modern, Minimalist, Traditional";
+        }
+
+        else if (category.value === "Party Planning") {
+            preference.placeholder =
+                "Example: Birthday, Wedding, Simple";
+        }
+
+        else if (category.value === "Jewellery") {
+            preference.placeholder =
+                "Example: Gold, Silver, Traditional";
+        }
+
+    });
+
+
+    async function getRecommendations() {
+
+        const categoryValue = category.value;
+
+        const budget =
+            document.getElementById("budget").value;
+
+        const preferenceValue =
+            preference.value;
+
+
+        if (!budget || !preferenceValue) {
+
+            document.getElementById("result").innerText =
+                "Please enter your budget and preference.";
+
+            return;
+        }
+
+
+        document.getElementById("result").innerHTML =
+    "🤖 <strong>PocketSmartAI is thinking...</strong><br><br>Please wait...";
+
+
+        const response = await fetch(
+            `/recommend?category=${encodeURIComponent(categoryValue)}&budget=${budget}&preference=${encodeURIComponent(preferenceValue)}`
+        );
+
+
+        const data = await response.json();
+
+if (data.recommendations) {
+    const recommendations = data.recommendations;
+
+const items = recommendations.split(/###\s*\d+\.\s*/).slice(1);
+
+let html = "";
+
+items.forEach((item, index) => {
+
+    const lines = item.split("\n");
+
+    const title = lines[0].trim();
+
+    const priceLine = lines.find(line =>
+        line.includes("Estimated Price")
+    );
+
+    const reasonLine = lines.find(line =>
+        line.includes("Short Reason") ||
+        line.includes("Reason")
+    );
+
+    const price = priceLine
+        ? priceLine.replace(/\*\*/g, "").replace("*", "").trim()
+        : "";
+
+    const reason = reasonLine
+        ? reasonLine.replace(/\*\*/g, "").replace("*", "").trim()
+        : "";
+
+    html += `
+        <div class="recommendation-card">
+            <h3>${index + 1}. ${title}</h3>
+            <p class="price">💰 ${price}</p>
+            <p class="reason">💡 ${reason}</p>
+        </div>
+    `;
+});
+
+document.getElementById("result").innerHTML = html;
+} else {
+    document.getElementById("result").innerText =
+        "No recommendations received.";
+}
+
+    }
+
+</script>
+
+   
+</body>
+</html>
