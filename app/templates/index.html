@@ -1,290 +1,2285 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
     <title>PocketSmartAI</title>
 
+
     <style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
         }
 
-        .container {
-            width: 600px;
-            margin: 50px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+
+        body {
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #111c3d,
+                    #050816 55%
+                );
+
+            color: white;
+            min-height: 100vh;
+
         }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 5px;
+
+        .navbar {
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            border-bottom:
+                1px solid #1c2745;
+
+            background:
+                rgba(5, 8, 22, 0.9);
+
         }
 
-        .subtitle {
-            text-align: center;
-            color: gray;
-            margin-bottom: 30px;
-        }
 
-        label {
+        .logo {
+
+            font-size: 24px;
+
             font-weight: bold;
-            display: block;
-            margin-top: 15px;
+
+            color: #65e8ff;
+
         }
 
-        input, select {
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 15px;
+
+        .nav-buttons {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
         }
+
 
         button {
-            width: 100%;
-            padding: 14px;
-            margin-top: 25px;
-            border: none;
-            border-radius: 8px;
-            background: #222;
-            color: white;
-            font-size: 16px;
+
             cursor: pointer;
+
+            border: none;
+
         }
 
-        button:hover {
-            background: #444;
+
+        .nav-btn {
+
+            padding: 10px 18px;
+
+            border-radius: 8px;
+
+            background: #111a31;
+
+            color: white;
+
         }
 
-      #result {
-    margin-top: 25px;
-    padding: 20px;
-    background: #f8f8f8;
-    border-radius: 10px;
-    line-height: 1.6;
-    white-space: pre-wrap;
-    border: 1px solid #e5e5e5;
-}
 
-.recommendation-card {
-    background: white;
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 14px;
-    border: 1px solid #ddd;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
+        .nav-btn:hover {
 
-.recommendation-card h3 {
-    margin-top: 0;
-    margin-bottom: 12px;
-}
+            background: #1d2a4c;
 
-.price {
-    font-weight: bold;
-    font-size: 16px;
-}
+        }
 
-.reason {
-    color: #555;
-    line-height: 1.5;
-}
 
-.recommendation-card h3 {
-    margin-top: 0;
-}
+        .logout-btn {
 
-.price {
-    font-weight: bold;
-}
+            padding: 10px 18px;
 
-.reason {
-    color: #555;
-}
-footer {
-    text-align: center;
-    margin-top: 30px;
-    color: #777;
-}
+            border-radius: 8px;
 
-footer p {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+            background: #291626;
 
-footer small {
-    font-size: 13px;
-}
+            color: #ff8da1;
+
+        }
+
+
+        .user-info {
+
+            color: #65e8ff;
+
+        }
+
+
+        .hero {
+
+            text-align: center;
+
+            padding: 70px 20px 40px;
+
+        }
+
+
+        .hero h1 {
+
+            font-size: 52px;
+
+            margin-bottom: 15px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #65e8ff,
+                    #8b7cff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+        }
+
+
+        .hero p {
+
+            color: #9da8c4;
+
+            font-size: 18px;
+
+        }
+
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1000px;
+
+            margin: auto;
+
+        }
+
+
+        .card {
+
+            background: #0b1124;
+
+            border: 1px solid #1d2947;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            margin-bottom: 30px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.3);
+
+        }
+
+
+        .card h2 {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #aeb8d4;
+
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 13px;
+
+            margin-bottom: 18px;
+
+            border-radius: 8px;
+
+            border: 1px solid #263453;
+
+            background: #070c1b;
+
+            color: white;
+
+            outline: none;
+
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color: #65e8ff;
+
+        }
+
+
+        .generate-btn {
+
+            width: 100%;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #65e8ff,
+                    #746cff
+                );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+        }
+
+
+        .generate-btn:hover {
+
+            opacity: 0.9;
+
+        }
+
+
+        .auth-box {
+
+            display: none;
+
+        }
+
+
+        .auth-buttons {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .auth-tab {
+
+            flex: 1;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            background: #111a31;
+
+            color: white;
+
+        }
+
+
+        .auth-tab.active {
+
+            background: #65e8ff;
+
+            color: #050816;
+
+            font-weight: bold;
+
+        }
+
+
+        .auth-message {
+
+            margin-top: 15px;
+
+            color: #65e8ff;
+
+            text-align: center;
+
+        }
+
+
+        /* RESULT AREA */
+
+        .result-box {
+
+            display: none;
+
+            margin-top: 30px;
+
+        }
+
+
+        .loading {
+
+            padding: 25px;
+
+            text-align: center;
+
+            color: #65e8ff;
+
+        }
+
+
+        /* RECOMMENDATION CARDS */
+
+        .recommendation-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+
+            margin-top: 20px;
+
+        }
+
+
+        .recommendation-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111a35,
+                    #080e20
+                );
+
+            border: 1px solid #263b67;
+
+            border-radius: 15px;
+
+            padding: 22px;
+
+            transition: 0.25s;
+
+        }
+
+
+        .recommendation-card:hover {
+
+            transform:
+                translateY(-4px);
+
+            border-color: #65e8ff;
+
+            box-shadow:
+                0 10px 30px
+                rgba(101, 232, 255, 0.12);
+
+        }
+
+
+        .recommendation-number {
+
+            color: #65e8ff;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .recommendation-card h3 {
+
+            font-size: 20px;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .price {
+
+            color: #8b7cff;
+
+            font-weight: bold;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .reason {
+
+            color: #aeb8d4;
+
+            line-height: 1.6;
+
+        }
+
+
+        .summary {
+
+            margin-top: 22px;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            background: #070c1b;
+
+            border: 1px solid #263453;
+
+        }
+
+
+        .summary-title {
+
+            color: #65e8ff;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .tip {
+
+            margin-top: 15px;
+
+            color: #c6cee4;
+
+            line-height: 1.6;
+
+        }
+
+
+        .platforms {
+
+            margin-top: 20px;
+
+        }
+
+
+        .platform-link {
+
+            display: inline-block;
+
+            margin: 6px;
+
+            padding: 10px 15px;
+
+            border-radius: 8px;
+
+            background: #17213c;
+
+            color: #65e8ff;
+
+            text-decoration: none;
+
+        }
+
+
+        /* FEATURES */
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 20px;
+
+        }
+
+
+        .feature {
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            background: #0b1124;
+
+            border: 1px solid #1d2947;
+
+            text-align: center;
+
+        }
+
+
+        .feature h3 {
+
+            margin-bottom: 10px;
+
+            color: #65e8ff;
+
+        }
+
+
+        .feature p {
+
+            color: #9da8c4;
+
+            line-height: 1.5;
+
+        }
+
+
+        small {
+
+            color: #7f8ba8;
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .hero h1 {
+
+                font-size: 38px;
+
+            }
+
+
+            .features,
+            .recommendation-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .navbar {
+
+                padding: 0 4%;
+
+            }
+
+
+            .nav-buttons {
+
+                gap: 5px;
+
+            }
+
+
+            .nav-btn,
+            .logout-btn {
+
+                padding: 8px 10px;
+
+                font-size: 12px;
+
+            }
+
+        }
 
     </style>
 
 </head>
 
+
 <body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            PocketSmartAI
+        </div>
+
+
+        <div class="nav-buttons">
+
+            <span
+                id="userInfo"
+                class="user-info">
+            </span>
+
+
+            <button
+                class="nav-btn"
+                onclick="showAuth()">
+
+                Login / Register
+
+            </button>
+
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+
+            <button
+                class="nav-btn"
+                onclick="window.open('/docs', '_blank')">
+
+                API
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            Smart Choices.
+            Smarter Budget.
+        </h1>
+
+        <p>
+            AI-powered recommendations
+            designed around your budget.
+        </p>
+
+    </section>
+
 
     <div class="container">
 
-        <h1>🤖 PocketSmartAI</h1>
 
-        <p class="subtitle">
-            AI-powered recommendations for Home, Parties & Jewellery
-        </p>
+        <!-- AUTH -->
 
-        <label>Category</label>
+        <div
+            id="authBox"
+            class="card auth-box">
 
-        <select id="category">
-            <option>Home Decoration</option>
-            <option>Party Planning</option>
-            <option>Jewellery</option>
-        </select>
+            <h2>Account</h2>
 
 
-        <label>Budget</label>
+            <div class="auth-buttons">
 
-        <input
-            type="number"
-            id="budget"
-            placeholder="Enter your budget in ₹"
-        >
+                <button
+                    id="loginTab"
+                    class="auth-tab active"
+                    onclick="showLogin()">
 
+                    Login
 
-        <label>Preference</label>
-
-        <input
-            type="text"
-            id="preference"
-            placeholder="Example: Modern, Minimalist, Traditional"
-        >
+                </button>
 
 
-        <button onclick="getRecommendations()">
-            ✨ Get Recommendations
-        </button>
+                <button
+                    id="registerTab"
+                    class="auth-tab"
+                    onclick="showRegister()">
+
+                    Register
+
+                </button>
+
+            </div>
 
 
-        <div id="result">
-            Your recommendations will appear here.
+            <div id="authForm">
+
+                <label>
+                    Username
+                </label>
+
+                <input
+                    type="text"
+                    id="authUsername"
+                    placeholder="Enter username"
+                >
+
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="authPassword"
+                    placeholder="Enter password"
+                >
+
+
+                <button
+                    class="generate-btn"
+                    onclick="submitAuth()">
+
+                    Login
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="authMessage"
+                class="auth-message">
+            </div>
+
         </div>
-        <footer>
-    <p>🤖 PocketSmartAI</p>
-    <small>AI-powered budget recommendations</small>
-</footer>
+
+
+        <!-- PLANNER -->
+
+        <div class="card">
+
+            <h2>
+                AI Recommendation Engine
+            </h2>
+
+
+            <label>
+                Category
+            </label>
+
+            <select id="category">
+
+                <option>
+                    Home Decoration
+                </option>
+
+                <option>
+                    Party Planning
+                </option>
+
+                <option>
+                    Jewellery
+                </option>
+
+            </select>
+
+
+            <label>
+                Budget
+            </label>
+
+            <input
+                type="number"
+                id="budget"
+                placeholder="Enter your budget"
+            >
+
+
+            <!-- HOME -->
+
+            <div id="homeFields">
+
+                <label>
+                    Room Type
+                </label>
+
+                <select id="roomType">
+
+                    <option>
+                        Living Room
+                    </option>
+
+                    <option>
+                        Bedroom
+                    </option>
+
+                    <option>
+                        Kitchen
+                    </option>
+
+                    <option>
+                        Study Room
+                    </option>
+
+                    <option>
+                        Full Home
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Interior Style
+                </label>
+
+                <select id="homeStyle">
+
+                    <option>
+                        Modern
+                    </option>
+
+                    <option>
+                        Minimalist
+                    </option>
+
+                    <option>
+                        Traditional
+                    </option>
+
+                    <option>
+                        Luxury
+                    </option>
+
+                    <option>
+                        Industrial
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PARTY -->
+
+            <div
+                id="partyFields"
+                style="display:none;">
+
+                <label>
+                    Event Type
+                </label>
+
+                <select id="eventType">
+
+                    <option>
+                        Birthday
+                    </option>
+
+                    <option>
+                        Wedding
+                    </option>
+
+                    <option>
+                        College Party
+                    </option>
+
+                    <option>
+                        Family Function
+                    </option>
+
+                    <option>
+                        Get Together
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Number of Guests
+                </label>
+
+                <input
+                    type="number"
+                    id="guestCount"
+                    placeholder="Example: 50"
+                >
+
+
+                <label>
+                    Party Theme
+                </label>
+
+                <input
+                    type="text"
+                    id="partyTheme"
+                    placeholder="Example: Black & Gold"
+                >
+
+            </div>
+
+
+            <!-- JEWELLERY -->
+
+            <div
+                id="jewelryFields"
+                style="display:none;">
+
+                <label>
+                    Occasion
+                </label>
+
+                <select id="jewelryOccasion">
+
+                    <option>
+                        Wedding
+                    </option>
+
+                    <option>
+                        Party
+                    </option>
+
+                    <option>
+                        College Event
+                    </option>
+
+                    <option>
+                        Casual
+                    </option>
+
+                    <option>
+                        Traditional Function
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Jewellery Type
+                </label>
+
+                <select id="jewelryType">
+
+                    <option>
+                        Necklace
+                    </option>
+
+                    <option>
+                        Earrings
+                    </option>
+
+                    <option>
+                        Bangles
+                    </option>
+
+                    <option>
+                        Full Set
+                    </option>
+
+                    <option>
+                        Any
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- IMAGE -->
+
+            <div
+                id="imageSection"
+                style="display:none;">
+
+                <label>
+                    Upload Outfit Image
+                </label>
+
+                <input
+                    type="file"
+                    id="outfitImage"
+                    accept="image/*"
+                >
+
+            </div>
+
+
+            <button
+                class="generate-btn"
+                onclick="generateRecommendation()">
+
+                ✨ Generate AI Recommendations
+
+            </button>
+
+
+            <!-- RESULT -->
+
+            <div
+                id="resultBox"
+                class="result-box">
+
+
+                <div
+                    id="loading"
+                    class="loading"
+                    style="display:none;">
+
+                    🤖 AI is analyzing
+                    your requirements...
+
+                </div>
+
+
+                <div
+                    id="recommendationGrid"
+                    class="recommendation-grid">
+                </div>
+
+
+                <div
+                    id="summary"
+                    class="summary"
+                    style="display:none;">
+
+                    <div
+                        class="summary-title">
+
+                        💰 Total Estimated Investment
+
+                    </div>
+
+
+                    <div
+                        id="totalEstimate">
+                    </div>
+
+
+                    <div
+                        class="tip">
+
+                        💡 <strong>AI Tip:</strong>
+
+                        <span id="aiTip">
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="platforms"
+                    class="platforms">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TESTIMONIALS -->
+
+        <div class="card">
+
+            <h2>
+                What Users Say
+            </h2>
+
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <h3>
+                        ⭐ Smart & Simple
+                    </h3>
+
+                    <p>
+                        "PocketSmartAI helped me
+                        find useful ideas without
+                        going over my budget."
+                    </p>
+
+                    <br>
+
+                    <small>
+                        — Demo User
+                    </small>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <h3>
+                        💰 Budget Friendly
+                    </h3>
+
+                    <p>
+                        "The recommendations were
+                        quick and perfectly suited
+                        to my budget."
+                    </p>
+
+                    <br>
+
+                    <small>
+                        — Happy User
+                    </small>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <h3>
+                        🤖 AI Experience
+                    </h3>
+
+                    <p>
+                        "The AI recommendations
+                        made planning much easier."
+                    </p>
+
+                    <br>
+
+                    <small>
+                        — PocketSmart User
+                    </small>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+            <div class="feature">
+
+                <h3>
+                    🤖 AI Powered
+                </h3>
+
+                <p>
+                    Gemini AI creates personalised
+                    recommendations.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    💰 Budget Smart
+                </h3>
+
+                <p>
+                    Recommendations are generated
+                    around your budget.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>
+                    👗 Visual AI
+                </h3>
+
+                <p>
+                    Upload outfits and get
+                    jewellery suggestions.
+                </p>
+
+            </div>
+
+        </div>
+
+        <br><br>
 
     </div>
+
+
 <script>
 
-    const category = document.getElementById("category");
-    const preference = document.getElementById("preference");
+let authMode = "login";
 
-    category.addEventListener("change", function() {
 
-        if (category.value === "Home Decoration") {
-            preference.placeholder =
-                "Example: Modern, Minimalist, Traditional";
-        }
+// ================= AUTH UI =================
 
-        else if (category.value === "Party Planning") {
-            preference.placeholder =
-                "Example: Birthday, Wedding, Simple";
-        }
+function showAuth() {
 
-        else if (category.value === "Jewellery") {
-            preference.placeholder =
-                "Example: Gold, Silver, Traditional";
-        }
+    document.getElementById(
+        "authBox"
+    ).style.display = "block";
 
+    document.getElementById(
+        "authBox"
+    ).scrollIntoView({
+        behavior: "smooth"
     });
 
-
-    async function getRecommendations() {
-
-        const categoryValue = category.value;
-
-        const budget =
-            document.getElementById("budget").value;
-
-        const preferenceValue =
-            preference.value;
+}
 
 
-        if (!budget || !preferenceValue) {
+function showLogin() {
 
-            document.getElementById("result").innerText =
-                "Please enter your budget and preference.";
+    authMode = "login";
+
+    document.getElementById(
+        "loginTab"
+    ).classList.add("active");
+
+    document.getElementById(
+        "registerTab"
+    ).classList.remove("active");
+
+    document.querySelector(
+        "#authForm button"
+    ).innerText = "Login";
+
+    document.getElementById(
+        "authMessage"
+    ).innerText = "";
+
+}
+
+
+function showRegister() {
+
+    authMode = "register";
+
+    document.getElementById(
+        "registerTab"
+    ).classList.add("active");
+
+    document.getElementById(
+        "loginTab"
+    ).classList.remove("active");
+
+    document.querySelector(
+        "#authForm button"
+    ).innerText = "Register";
+
+    document.getElementById(
+        "authMessage"
+    ).innerText = "";
+
+}
+
+
+// ================= AUTH SUBMIT =================
+
+async function submitAuth() {
+
+    const username =
+        document.getElementById(
+            "authUsername"
+        ).value;
+
+    const password =
+        document.getElementById(
+            "authPassword"
+        ).value;
+
+    if (!username || !password) {
+
+        document.getElementById(
+            "authMessage"
+        ).innerText =
+            "Please enter username and password.";
+
+        return;
+    }
+
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "username",
+        username
+    );
+
+    formData.append(
+        "password",
+        password
+    );
+
+
+    const endpoint =
+        authMode === "login"
+            ? "/login"
+            : "/register";
+
+
+    try {
+
+        const response =
+            await fetch(
+                endpoint,
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (authMode === "register") {
+
+            document.getElementById(
+                "authMessage"
+            ).innerText =
+                data.message;
+
+
+            if (
+                data.message ===
+                "Registration successful"
+            ) {
+
+                showLogin();
+
+            }
 
             return;
         }
 
 
-        document.getElementById("result").innerHTML =
-    "🤖 <strong>PocketSmartAI is thinking...</strong><br><br>Please wait...";
+        if (
+            data.message ===
+            "Login successful"
+        ) {
 
+            await createToken(
+                username,
+                password
+            );
 
-        const response = await fetch(
-            `/recommend?category=${encodeURIComponent(categoryValue)}&budget=${budget}&preference=${encodeURIComponent(preferenceValue)}`
-        );
+        } else {
 
+            document.getElementById(
+                "authMessage"
+            ).innerText =
+                data.message;
 
-        const data = await response.json();
-
-if (data.recommendations) {
-    const recommendations = data.recommendations;
-
-const items = recommendations.split(/###\s*\d+\.\s*/).slice(1);
-
-let html = "";
-
-items.forEach((item, index) => {
-
-    const lines = item.split("\n");
-
-    const title = lines[0].trim();
-
-    const priceLine = lines.find(line =>
-        line.includes("Estimated Price")
-    );
-
-    const reasonLine = lines.find(line =>
-        line.includes("Short Reason") ||
-        line.includes("Reason")
-    );
-
-    const price = priceLine
-        ? priceLine.replace(/\*\*/g, "").replace("*", "").trim()
-        : "";
-
-    const reason = reasonLine
-        ? reasonLine.replace(/\*\*/g, "").replace("*", "").trim()
-        : "";
-
-    html += `
-        <div class="recommendation-card">
-            <h3>${index + 1}. ${title}</h3>
-            <p class="price">💰 ${price}</p>
-            <p class="reason">💡 ${reason}</p>
-        </div>
-    `;
-});
-
-document.getElementById("result").innerHTML = html;
-} else {
-    document.getElementById("result").innerText =
-        "No recommendations received.";
-}
+        }
 
     }
 
+    catch (error) {
+
+        document.getElementById(
+            "authMessage"
+        ).innerText =
+            "Something went wrong.";
+
+    }
+
+}
+
+
+// ================= TOKEN =================
+
+async function createToken(
+    username,
+    password
+) {
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "username",
+        username
+    );
+
+    formData.append(
+        "password",
+        password
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/token",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            data.access_token
+        ) {
+
+            localStorage.setItem(
+                "access_token",
+                data.access_token
+            );
+
+
+            document.getElementById(
+                "authMessage"
+            ).innerText =
+                "Login successful!";
+
+
+            updateUser();
+
+        }
+
+    }
+
+    catch (error) {
+
+        document.getElementById(
+            "authMessage"
+        ).innerText =
+            "Token creation failed.";
+
+    }
+
+}
+
+
+// ================= USER =================
+
+async function updateUser() {
+
+    const token =
+        localStorage.getItem(
+            "access_token"
+        );
+
+
+    if (!token) {
+
+        document.getElementById(
+            "userInfo"
+        ).innerText = "";
+
+        return;
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/session-info",
+                {
+                    headers: {
+                        "Authorization":
+                            "Bearer " + token
+                    }
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            data.username
+        ) {
+
+            document.getElementById(
+                "userInfo"
+            ).innerText =
+                "👤 " +
+                data.username;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.log(error);
+
+    }
+
+}
+
+
+// ================= LOGOUT =================
+
+function logout() {
+
+    localStorage.removeItem(
+        "access_token"
+    );
+
+
+    document.getElementById(
+        "userInfo"
+    ).innerText = "";
+
+
+    alert(
+        "Logged out successfully."
+    );
+
+}
+
+
+// ================= CATEGORY =================
+
+document.getElementById(
+    "category"
+).addEventListener(
+    "change",
+    function () {
+
+        const category =
+            this.value;
+
+
+        const homeFields =
+            document.getElementById(
+                "homeFields"
+            );
+
+
+        const partyFields =
+            document.getElementById(
+                "partyFields"
+            );
+
+
+        const jewelryFields =
+            document.getElementById(
+                "jewelryFields"
+            );
+
+
+        const imageSection =
+            document.getElementById(
+                "imageSection"
+            );
+
+
+        homeFields.style.display =
+            "none";
+
+        partyFields.style.display =
+            "none";
+
+        jewelryFields.style.display =
+            "none";
+
+        imageSection.style.display =
+            "none";
+
+
+        if (
+            category ===
+            "Home Decoration"
+        ) {
+
+            homeFields.style.display =
+                "block";
+
+        }
+
+        else if (
+            category ===
+            "Party Planning"
+        ) {
+
+            partyFields.style.display =
+                "block";
+
+        }
+
+        else if (
+            category ===
+            "Jewellery"
+        ) {
+
+            jewelryFields.style.display =
+                "block";
+
+            imageSection.style.display =
+                "block";
+
+        }
+
+    }
+);
+
+
+// ================= BUILD PREFERENCE =================
+
+function buildPreference() {
+
+    const category =
+        document.getElementById(
+            "category"
+        ).value;
+
+
+    let preference = "";
+
+
+    if (
+        category ===
+        "Home Decoration"
+    ) {
+
+        const room =
+            document.getElementById(
+                "roomType"
+            ).value;
+
+
+        const style =
+            document.getElementById(
+                "homeStyle"
+            ).value;
+
+
+        preference =
+            "Room: " +
+            room +
+            ", Style: " +
+            style;
+
+    }
+
+
+    else if (
+        category ===
+        "Party Planning"
+    ) {
+
+        const event =
+            document.getElementById(
+                "eventType"
+            ).value;
+
+
+        const guests =
+            document.getElementById(
+                "guestCount"
+            ).value;
+
+
+        const theme =
+            document.getElementById(
+                "partyTheme"
+            ).value;
+
+
+        preference =
+            "Event: " +
+            event +
+            ", Guests: " +
+            guests +
+            ", Theme: " +
+            theme;
+
+    }
+
+
+    else if (
+        category ===
+        "Jewellery"
+    ) {
+
+        const occasion =
+            document.getElementById(
+                "jewelryOccasion"
+            ).value;
+
+
+        const type =
+            document.getElementById(
+                "jewelryType"
+            ).value;
+
+
+        preference =
+            "Occasion: " +
+            occasion +
+            ", Jewellery Type: " +
+            type;
+
+    }
+
+
+    return preference;
+
+}
+
+
+// ================= DISPLAY CARDS =================
+
+function displayRecommendations(
+    data
+) {
+
+    const grid =
+        document.getElementById(
+            "recommendationGrid"
+        );
+
+
+    const summary =
+        document.getElementById(
+            "summary"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    if (
+        !data.recommendations ||
+        !Array.isArray(
+            data.recommendations
+        ) ||
+        !data.recommendations.length
+    ) {
+
+        grid.innerHTML =
+            "<p>No recommendations found.</p>";
+
+        return;
+
+    }
+
+
+    data.recommendations.forEach(
+        function(item, index) {
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "recommendation-card";
+
+
+            card.innerHTML = `
+
+                <div class="recommendation-number">
+                    RECOMMENDATION ${index + 1}
+                </div>
+
+                <h3>
+                    ${item.item}
+                </h3>
+
+                <div class="price">
+                    💰 ${item.price}
+                </div>
+
+                <div class="reason">
+                    ✨ ${item.reason}
+                </div>
+
+            `;
+
+
+            grid.appendChild(card);
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalEstimate"
+    ).innerText =
+        data.total_estimate ||
+        "Within budget";
+
+
+    document.getElementById(
+        "aiTip"
+    ).innerText =
+        data.tip ||
+        "Choose the options that best match your needs.";
+
+
+    summary.style.display =
+        "block";
+
+}
+
+
+// ================= PLATFORMS =================
+
+function displayPlatforms(
+    category
+) {
+
+    const platforms =
+        document.getElementById(
+            "platforms"
+        );
+
+
+    platforms.innerHTML = "";
+
+
+    const platformList = {
+
+        "Home Decoration": [
+
+            [
+                "Amazon",
+                "https://www.amazon.in"
+            ],
+
+            [
+                "Flipkart",
+                "https://www.flipkart.com"
+            ],
+
+            [
+                "IKEA",
+                "https://www.ikea.com/in/en/"
+            ]
+
+        ],
+
+
+        "Party Planning": [
+
+            [
+                "Swiggy",
+                "https://www.swiggy.com"
+            ],
+
+            [
+                "Zomato",
+                "https://www.zomato.com"
+            ],
+
+            [
+                "OYO",
+                "https://www.oyorooms.com"
+            ]
+
+        ],
+
+
+        "Jewellery": [
+
+            [
+                "Amazon",
+                "https://www.amazon.in"
+            ],
+
+            [
+                "Flipkart",
+                "https://www.flipkart.com"
+            ]
+
+        ]
+
+    };
+
+
+    const list =
+        platformList[category] ||
+        [];
+
+
+    if (!list.length) {
+
+        return;
+
+    }
+
+
+    platforms.innerHTML =
+        "<strong>Available Platforms:</strong><br>";
+
+
+    list.forEach(
+        function(platform) {
+
+            platforms.innerHTML += `
+
+                <a
+                    class="platform-link"
+                    href="${platform[1]}"
+                    target="_blank">
+
+                    ${platform[0]}
+
+                </a>
+
+            `;
+
+        }
+    );
+
+}
+
+
+// ================= RECOMMENDATION =================
+
+async function generateRecommendation() {
+
+    const category =
+        document.getElementById(
+            "category"
+        ).value;
+
+
+    const budget =
+        document.getElementById(
+            "budget"
+        ).value;
+
+
+    const preference =
+        buildPreference();
+
+
+    const image =
+        document.getElementById(
+            "outfitImage"
+        ).files[0];
+
+
+    const authToken =
+        localStorage.getItem(
+            "access_token"
+        );
+
+
+    const resultBox =
+        document.getElementById(
+            "resultBox"
+        );
+
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    const grid =
+        document.getElementById(
+            "recommendationGrid"
+        );
+
+
+    const summary =
+        document.getElementById(
+            "summary"
+        );
+
+
+    const platforms =
+        document.getElementById(
+            "platforms"
+        );
+
+
+    // ================= LOGIN CHECK =================
+
+    if (!authToken) {
+
+        resultBox.style.display =
+            "block";
+
+        loading.style.display =
+            "none";
+
+
+        grid.innerHTML = `
+
+            <div class="recommendation-card">
+
+                🔐 Please login first
+                to get recommendations.
+
+            </div>
+
+        `;
+
+
+        summary.style.display =
+            "none";
+
+
+        return;
+
+    }
+
+
+    // ================= BUDGET CHECK =================
+
+    if (!budget) {
+
+        resultBox.style.display =
+            "block";
+
+        loading.style.display =
+            "none";
+
+
+        grid.innerHTML = `
+
+            <div class="recommendation-card">
+
+                💰 Please enter your budget.
+
+            </div>
+
+        `;
+
+
+        summary.style.display =
+            "none";
+
+
+        return;
+
+    }
+
+
+    resultBox.style.display =
+        "block";
+
+
+    loading.style.display =
+        "block";
+
+
+    grid.innerHTML = "";
+
+    summary.style.display =
+        "none";
+
+    platforms.innerHTML = "";
+
+
+    try {
+
+
+        // ================= JEWELLERY IMAGE AI =================
+
+        if (
+            category === "Jewellery" &&
+            image
+        ) {
+
+            const formData =
+                new FormData();
+
+
+            formData.append(
+                "budget",
+                budget
+            );
+
+
+            formData.append(
+                "preference",
+                preference
+            );
+
+
+            formData.append(
+                "image",
+                image
+            );
+
+
+            const response =
+                await fetch(
+                    "/generate-jewelry-image",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Authorization":
+                                "Bearer " +
+                                authToken
+                        },
+
+                        body: formData
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            loading.style.display =
+                "none";
+
+
+            if (!response.ok) {
+
+                grid.innerHTML = `
+
+                    <div class="recommendation-card">
+
+                        ❌ ${
+                            data.detail ||
+                            "Something went wrong."
+                        }
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            displayRecommendations(
+                data
+            );
+
+
+            displayPlatforms(
+                category
+            );
+
+
+            return;
+
+        }
+
+
+        // ================= STRUCTURED AI =================
+
+        const url =
+            "/recommendations-details?" +
+            "category=" +
+            encodeURIComponent(
+                category
+            ) +
+            "&budget=" +
+            encodeURIComponent(
+                budget
+            ) +
+            "&preference=" +
+            encodeURIComponent(
+                preference
+            );
+
+
+        const response =
+            await fetch(
+                url,
+                {
+                    headers: {
+                        "Authorization":
+                            "Bearer " +
+                            authToken
+                    }
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        loading.style.display =
+            "none";
+
+
+        if (!response.ok) {
+
+            grid.innerHTML = `
+
+                <div class="recommendation-card">
+
+                    ❌ ${
+                        data.detail ||
+                        "Something went wrong."
+                    }
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        displayRecommendations(
+            data
+        );
+
+
+        displayPlatforms(
+            category
+        );
+
+
+    }
+
+    catch (error) {
+
+        loading.style.display =
+            "none";
+
+
+        grid.innerHTML = `
+
+            <div class="recommendation-card">
+
+                ❌ Error connecting
+                to server.
+
+            </div>
+
+        `;
+
+
+        console.error(error);
+
+    }
+
+}
+
+
+// ================= STARTUP =================
+
+updateUser();
+
 </script>
 
-   
+
 </body>
+
 </html>
