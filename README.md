@@ -1,4 +1,5 @@
 # PocketSmartAI
+![PocketSmartAI Demo](app/static/pocketsmartai-demo.png)
 
 PocketSmartAI is an AI-powered budget recommendation assistant.
 
