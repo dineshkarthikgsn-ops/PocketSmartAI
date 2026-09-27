@@ -42,7 +42,6 @@ PocketSmartAI/
 │   ├── routes.py
 │   └── services.py
 │
-├── .env
 ├── .env.example
 ├── .gitignore
 ├── requirements.txt
