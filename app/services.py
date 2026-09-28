@@ -5,16 +5,19 @@ import time
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 
-def get_gemini_response(prompt):
+def get_gemini_response(prompt, json_mode=False):
 
     for attempt in range(3):
 
         try:
 
             response = client.models.generate_content(
-               model="gemini-3.1-flash-lite",
-                contents=prompt
-            )
+    model="gemini-3.1-flash-lite",
+    contents=prompt,
+    config={
+        "response_mime_type": "application/json"
+    }
+)
 
             return response.text
 

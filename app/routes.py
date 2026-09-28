@@ -99,7 +99,7 @@ For each recommendation, include:
 Keep the answer simple and practical.
 """
 
-    result = get_gemini_response(prompt)
+    result = get_gemini_response(prompt, json_mode=True)
 
     platforms = MOCK_PLATFORMS.get(category, [])
 
@@ -144,8 +144,7 @@ Keep the total within the budget.
 Keep the answer simple and practical.
 """
 
-    result = get_gemini_response(prompt)
-
+result = get_gemini_response(prompt, json_mode=True)
     return {
         "category": "Party Planning",
         "budget": budget,
@@ -176,8 +175,7 @@ Keep the total within the budget.
 Keep the answer simple and practical.
 """
 
-    result = get_gemini_response(prompt)
-
+result = get_gemini_response(prompt, json_mode=True)
     return {
         "category": "Jewellery",
         "budget": budget,
@@ -351,7 +349,10 @@ Return the answer ONLY as valid JSON in this format:
             model="gemini-3.1-flash-lite",
             contents=[
                 prompt,
-                __import__("google.genai", fromlist=["types"]).types.Part.from_bytes(
+                __import__(
+                    "google.genai",
+                    fromlist=["types"]
+                ).types.Part.from_bytes(
                     data=image_data,
                     mime_type=image.content_type
                 )
@@ -494,16 +495,19 @@ Rules:
 - Return ONLY JSON.
 """
 
-    result = get_gemini_response(prompt)
+    result = get_gemini_response(
+        prompt,
+        json_mode=True
+    )
 
     try:
         details = json.loads(result)
 
-    except json.JSONDecodeError:
-        raise HTTPException(
-            status_code=500,
-            detail="AI returned invalid JSON"
-        )
+    except json.JSONDecodeError as e:
+    raise HTTPException(
+        status_code=500,
+        detail=f"AI returned invalid JSON: {result}"
+    )
 
     return {
         "username": username,
