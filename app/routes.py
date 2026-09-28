@@ -144,7 +144,8 @@ Keep the total within the budget.
 Keep the answer simple and practical.
 """
 
-result = get_gemini_response(prompt, json_mode=True)
+    result = get_gemini_response(prompt, json_mode=True)
+
     return {
         "category": "Party Planning",
         "budget": budget,
@@ -175,7 +176,8 @@ Keep the total within the budget.
 Keep the answer simple and practical.
 """
 
-result = get_gemini_response(prompt, json_mode=True)
+    result = get_gemini_response(prompt, json_mode=True)
+
     return {
         "category": "Jewellery",
         "budget": budget,
@@ -504,7 +506,7 @@ Rules:
         details = json.loads(result)
 
     except json.JSONDecodeError as e:
-    raise HTTPException(
+        raise HTTPException(
         status_code=500,
         detail=f"AI returned invalid JSON: {result}"
     )
