@@ -346,33 +346,75 @@ Return the answer ONLY as valid JSON in this format:
 }}
 """
 
-    try:
-        response = client.models.generate_content(
-            model="gemini-3.1-flash-lite",
-            contents=[
-                prompt,
-                __import__(
-                    "google.genai",
-                    fromlist=["types"]
-                ).types.Part.from_bytes(
-                    data=image_data,
-                    mime_type=image.content_type
+    image_part = __import__(
+        "google.genai",
+        fromlist=["types"]
+    ).types.Part.from_bytes(
+        data=image_data,
+        mime_type=image.content_type
+    )
+
+    models = [
+        "gemini-3.1-flash-lite",
+        "gemini-3.5-flash-lite"
+    ]
+
+    details = None
+    last_error = None
+
+    for model in models:
+        for attempt in range(3):
+            try:
+                response = client.models.generate_content(
+                    model=model,
+                    contents=[
+                        prompt,
+                        image_part
+                    ],
+                    config={
+                        "response_mime_type": "application/json"
+                    }
                 )
-            ]
-        )
 
-        result = response.text
+                result = response.text.strip()
+                result = result.replace("```json", "")
+                result = result.replace("```", "")
+                result = result.strip()
 
-        result = result.replace("```json", "")
-        result = result.replace("```", "")
-        result = result.strip()
+                first_brace = result.find("{")
+                last_brace = result.rfind("}")
 
-        details = json.loads(result)
+                if first_brace != -1 and last_brace != -1:
+                    result = result[first_brace:last_brace + 1]
 
-    except Exception as e:
+                details = json.loads(result)
+                break
+
+            except Exception as e:
+                last_error = str(e)
+
+                if "503" in last_error or "UNAVAILABLE" in last_error:
+                    if attempt < 2:
+                        import time
+                        time.sleep(2 ** (attempt + 1))
+                        continue
+                    break
+
+                raise HTTPException(
+                    status_code=500,
+                    detail=f"Gemini image processing error: {last_error}"
+                )
+
+        if details is not None:
+            break
+
+    if details is None:
         raise HTTPException(
-            status_code=500,
-            detail=f"Gemini image processing error: {str(e)}"
+            status_code=503,
+            detail=(
+                "Gemini image processing is temporarily unavailable. "
+                f"Last error: {last_error}"
+            )
         )
 
     save_history(
